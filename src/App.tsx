@@ -1,25 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import {Profile, Directory} from './components';
 import './App.css';
 
 function App() {
+  
+  const[username, setUsername] = useState<string | null>(null);
+
+  const handleChoose = (newUsername: string): void  =>  {
+      setUsername(newUsername);
+  }
+
+  const handleReturnDirectoryClick = (): void => {
+    setUsername(null);
+  }
+
+  let body;
+
+  if (username) {
+    body = <Profile username={username} onChoose={handleChoose} />;
+  } else {
+    body = <Directory onChoose={handleChoose} />
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <header>
+      <h1>PetBook</h1>
+      <nav>
+        {username && (
+          <button onClick={handleReturnDirectoryClick}>
+            Return to directory
+          </button>
+        )}
+      </nav>
+    </header>
+    <main>{body}</main>
+  </div>
   );
 }
 
