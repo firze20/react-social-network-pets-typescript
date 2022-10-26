@@ -75,7 +75,7 @@ export class Profile extends React.Component<IProfileProps, IProfileState> {
                     <h3>@{this.props.username}</h3>
                     <p>{bio}</p>
                     <h3>My friends</h3>
-                    {/*<Userlist onChoose={this.props.onChoose} />--*/}
+                    <Userlist usernames={friends!} onChoose={this.props.onChoose} />
                 </div>
             </div>
         )
