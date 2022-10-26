@@ -1,5 +1,5 @@
-import {IAnimal} from '../models/IAnimal';
+import {IDescription} from '../models/IAnimal';
 
 export interface IProfileState {
-    userData: IAnimal | null;
+    userData: IDescription | null;
 }

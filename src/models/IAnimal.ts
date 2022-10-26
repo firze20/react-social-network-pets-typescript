@@ -6,7 +6,7 @@ export interface IAnimal {
     [key in keyof IAnimal]?: IAnimal[key];
   };
   
-  interface IDescription {
+  export interface IDescription {
     name: string;
     bio: string;
     profilePictureUrl: string;

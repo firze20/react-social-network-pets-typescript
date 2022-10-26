@@ -2,18 +2,10 @@ import React from "react";
 import { cancelFetch, fetchUserData } from "../services/dataFetcher";
 
 //PROPS
-
 import { IProfileProps} from './IProfileProps'
-
 //STATES
-
 import {IProfileState} from './IProfileState';
-
-//models
-
-
 //sub components
-
 import {Userlist} from './Userlist';
 
 export class Profile extends React.Component<IProfileProps, IProfileState> {
@@ -29,6 +21,8 @@ export class Profile extends React.Component<IProfileProps, IProfileState> {
 
     componentDidMount(): void {
         this.loadUserData();
+
+        console.log(this.state.userData);
     }
 
     componentWillUnmount(): void {
@@ -62,19 +56,13 @@ export class Profile extends React.Component<IProfileProps, IProfileState> {
             className+= ' loading';
         }
 
-        const data = this.state.userData ? Object.keys(this.state.userData) : null;
+        const name = isLoading ? 'Loading...' : this.state.userData?.name;
 
-        let name;
+        const bio = isLoading ? 'Loading...' : this.state.userData?.bio;
 
-        let bio;
+        const friends = isLoading ? [] : this.state.userData?.friends;
 
-        let friends;
-
-        let profileImage;
-
-        data?.forEach(specie => {
-            
-        });
+        const profileImage = isLoading ? <p>Is Loading...</p> : <img src={this.state.userData?.profilePictureUrl} alt="" />
 
 
         return(

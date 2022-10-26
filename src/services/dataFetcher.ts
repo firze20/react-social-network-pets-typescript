@@ -3,7 +3,7 @@
 // this module just waits a little bit before responding.
 //
 // You don't need to look at this, but you can if you want!
-import {IAnimal} from '../models/IAnimal';
+import {IAnimal, IDescription} from '../models/IAnimal';
 import {defineProperty} from '../helpers/helper'; // helper for Object define property
 
 interface CallbackOneParam<T1, T2 = void> {
@@ -54,7 +54,7 @@ class Fetch {
 
 export function fetchUserData(
   username: string,
-  callback: CallbackOneParam<IAnimal>
+  callback: CallbackOneParam<IDescription>
 ) {
   if (!FAKE_USER_DATA.hasOwnProperty(username)) {
     throw new Error(
