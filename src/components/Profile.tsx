@@ -21,8 +21,6 @@ export class Profile extends React.Component<IProfileProps, IProfileState> {
 
     componentDidMount(): void {
         this.loadUserData();
-
-        console.log(this.state.userData);
     }
 
     componentWillUnmount(): void {
@@ -42,10 +40,15 @@ export class Profile extends React.Component<IProfileProps, IProfileState> {
         });
 
         this.fetchID = fetchUserData(this.props.username, (userData) => {
+            console.log(userData);
             this.setState({
-                userData
+                userData: this.fetchID
             });
         })
+
+        console.log(this.fetchID);
+        console.log(this.state.userData);
+
     }
 
     render(): JSX.Element {

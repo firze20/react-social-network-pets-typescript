@@ -38,9 +38,9 @@ const timeoutByFetchId = new Map();
 
 class Fetch {
   _id: any;
-
-  constructor(id?: any) {
-    this._id = id;
+  _animalObject: IDescription
+  constructor(animalObject: IDescription) {
+    this._animalObject = animalObject;
     /*Object.defineProperty(this, "_id", {
       value: Date.now() + Math.random().toString().substr(2),
     });*/
@@ -56,13 +56,15 @@ export function fetchUserData(
   username: string,
   callback: CallbackOneParam<IDescription>
 ) {
+  console.log(username);
+  console.log(callback);
   if (!FAKE_USER_DATA.hasOwnProperty(username)) {
     throw new Error(
       'Invalid username. Make sure it is "cat", "dog", or "komodo".'
     );
   }
 
-  const fetch = new Fetch();
+  const fetch = new Fetch(FAKE_USER_DATA[username]);
 
   const delay: number = Math.floor(Math.random() * 1000) + 500;
   const timeout = setTimeout(() => {
@@ -71,11 +73,10 @@ export function fetchUserData(
   }, delay);
 
   timeoutByFetchId.set(fetch._id, timeout);
-
-  return fetch;
+  return fetch._animalObject;
 }
 
-export function cancelFetch(fetch: any) {
+export function cancelFetch(fetch: IDescription) {
   if (!fetch || typeof fetch !== "object") {
     return;
   }
