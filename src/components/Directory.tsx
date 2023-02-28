@@ -1,5 +1,3 @@
-import React from "react";
-
 import {IDirectoryProps} from "./IDirectoryProps";
 
 import {Userlist} from './Userlist';
